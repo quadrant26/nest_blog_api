@@ -71,3 +71,12 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+### '@nestjs/swagger' 使用
+
+```
+@ApiTags("帖子") // 每个控制器的标题
+@ApiOperation({ summary: '显示博客列表' }) // 这个方法的描述
+```
+
