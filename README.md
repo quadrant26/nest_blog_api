@@ -108,3 +108,59 @@ class CreatePostDto {
 
 ```
 
+### 官方 nest mongo
+```
+cnpm install --save nestjs-typegoose nestjs-typegoose
+
+// app.module.ts
+import { TypegooseModule } from 'nestjs-typegoose';
+
+@Module({
+  imports: [
+    TypegooseModule.forRoot('mongodb://localhost/nest-blog-api', {
+      useNewUrlParser: true,
+    }),
+    PostsModule
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+
+// posts/post.model.ts
+import { prop } from "@typegoose/typegoose";
+import { IsString } from "class-validator";
+
+export class Post {
+  @IsString()
+  @prop({ required: true })
+  title: string;
+  @IsString()
+  @prop({ required: true })
+  content: string;
+}
+
+// posts/posts.module.ts
+import { TypegooseModule } from 'nestjs-typegoose';
+
+@Module({
+  imports: [
+    TypegooseModule.forFeature([Post])
+  ],
+  controllers: [PostsController]
+})
+
+// posts/posts.controller.ts
+import { InjectModel } from 'nestjs-typegoose';
+import { Post as PostSchema } from './post.model'
+import { ReturnModelType } from "@typegoose/typegoose";
+
+export class PostsController {
+  constructor(
+      @InjectModel(PostSchema) private readonly postModel: ReturnModelType<typeof PostSchema>
+  ) {
+
+  }
+}
+
+```
+

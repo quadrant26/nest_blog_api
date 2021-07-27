@@ -3,8 +3,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PostsModule } from './posts/posts.module';
 
+import { TypegooseModule } from 'nestjs-typegoose';
+
 @Module({
-  imports: [PostsModule],
+  imports: [
+    TypegooseModule.forRoot('mongodb://localhost/nest-blog-api', {
+      useNewUrlParser: true,
+    }),
+    PostsModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

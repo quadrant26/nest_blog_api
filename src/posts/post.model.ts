@@ -1,11 +1,21 @@
 import { getModelForClass, prop } from "@typegoose/typegoose";
+import { IsString } from "class-validator";
+
+// export class Post {
+//   @prop()
+//   title: string;
+//   @prop()
+//   content: string;
+// }
+
+// export const PostModel = getModelForClass(Post);
 
 export class Post {
-  @prop()
+  @IsString()
+  @prop({ required: true })
   title: string;
-  @prop()
+  @IsString()
+  @prop({ required: true })
   content: string;
 }
-
-export const PostModel = getModelForClass(Post);
 

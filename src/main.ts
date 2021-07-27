@@ -6,11 +6,11 @@ import * as mongose from 'mongoose';
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
-  mongose.connect('mongodb://localhost/nest-blog-api', {
-    useCreateIndex: true,
-    useNewUrlParser: true,
-    useFindAndModify: false,
-  })
+  // mongose.connect('mongodb://localhost/nest-blog-api', {
+  //   useCreateIndex: true,
+  //   useNewUrlParser: true,
+  //   useFindAndModify: false,
+  // })
   const app = await NestFactory.create(AppModule);
 
   // 全局的管道
