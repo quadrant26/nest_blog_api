@@ -81,3 +81,30 @@ Nest is [MIT licensed](LICENSE).
 @ApiProperty({ description: "接口参数的定义" })
 ```
 
+### 数据类型校验
+```
+cnpm i --save class-validator class-transformer
+
+// main.ts
+import { ValidationPipe } from "@nestjs/common";
+
+async function bootstrap (){ 
+  const app = await NestFactory.create(AppModule);
+
+  app.useGlobalPipes(new ValidationPipe() );
+  ...
+}
+
+// posts/posts.controller.ts
+import { IsNotEmpty } from 'class-validator';
+
+class CreatePostDto {
+  @ApiProperty({ description: "帖子标题", example: "帖子标题1" })
+  @IsNotEmpty({ message: '请填写标题' })
+  title: string;
+  @ApiProperty({ description: "帖子内容", example: "帖子内容1" })
+  content: string;
+}
+
+```
+
