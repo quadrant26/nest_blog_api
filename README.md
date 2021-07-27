@@ -78,5 +78,6 @@ Nest is [MIT licensed](LICENSE).
 ```
 @ApiTags("帖子") // 每个控制器的标题
 @ApiOperation({ summary: '显示博客列表' }) // 这个方法的描述
+@ApiProperty({ description: "接口参数的定义" })
 ```
 
